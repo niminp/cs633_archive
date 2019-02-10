@@ -22,6 +22,7 @@ class Project(models.Model):
 	semester = models.CharField(max_length=255, choices=SEMESTER_CHOICES)
 	instructor = models.ForeignKey(User, on_delete=models.PROTECT)
 	facilitator = models.ManyToManyField(User, related_name='projects')
+	team_member = models.ManyToManyField('TeamMember', related_name='projects')
 	github = models.URLField(null=True, blank=True)
 	project_management = models.URLField(null=True, blank=True)
 	website = models.URLField(null=True, blank=True)
@@ -29,20 +30,43 @@ class Project(models.Model):
 	created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 	last_modified = models.DateTimeField(auto_now=True)
 
+	def __str__(self):
+		return "{}".format(self.name)
+
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-	fields = ['name', 'description', 'year', 'semester', 'instructor', 'facilitator', 'github', 'project_management', 'website', 'is_hidden', 'last_modified', 'created']
+	fields = ['name', 'description', 'year', 'semester', 'instructor', 'facilitator', 'team_member', 'github', 'project_management', 'website', 'is_hidden', 'last_modified', 'created']
 	readonly_fields = ['last_modified', 'created']
 	list_display = ['id', 'name', 'description', 'year', 'semester', 'instructor_link', 'facilitator_link', 'github', 'project_management', 'website', 'is_hidden', 'last_modified', 'created']
-	list_filter = ['is_hidden', 'instructor', 'facilitator', 'semester', 'year']
+	list_filter = ['is_hidden', 'instructor', 'facilitator', 'team_member', 'semester', 'year']
 	search_fields = ['name', 'year', 'semester']
+
+	def instructor_link(self, obj):
+		return format_html('<a href="{}">{}</a>', reverse('admin:auth_user_change', args=[obj.instructor.id]), obj.instructor)
+	instructor_link.short_description = 'Instructor'
+	instructor_link.admin_order_field = 'instructor'
 
 	def facilitator_link(self, obj):
 		return format_html(", ".join(['<a href="{}">{}</a>'.format(reverse('admin:auth_user_change', args=[facilitator.id]), facilitator) for facilitator in obj.facilitator.all()]))
 	facilitator_link.short_description = 'Facilitator'
 	facilitator_link.admin_order_field = 'facilitator'
 
-	def instructor_link(self, obj):
-		return format_html('<a href="{}">{}</a>', reverse('admin:auth_user_change', args=[obj.instructor.id]), obj.instructor)
-	instructor_link.short_description = 'Instructor'
-	instructor_link.admin_order_field = 'instructor'
+	def team_member_link(self, obj):
+		return format_html(", ".join(['<a href="{}">{}</a>'.format(reverse('admin:auth_user_change', args=[team_member.id]), team_member.name) for team_member in obj.team_member.all()]))
+	team_member_link.short_description = 'TeamMember'
+	team_member_link.admin_order_field = 'team_member'
+
+class TeamMember(models.Model):
+	name = models.CharField(max_length=255)
+	created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+	last_modified = models.DateTimeField(auto_now=True)
+
+	def __str__(self):
+		return "{}".format(self.name)
+
+@admin.register(TeamMember)
+class TeamMemberAdmin(admin.ModelAdmin):
+	fields = ['name',  'last_modified', 'created']
+	readonly_fields = ['last_modified', 'created']
+	list_display = ['id', 'name', 'last_modified', 'created']
+	search_fields = ['name']
