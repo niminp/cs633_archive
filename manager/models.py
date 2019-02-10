@@ -36,6 +36,11 @@ class Project(models.Model):
 	def __str__(self):
 		return "{}".format(self.name)
 
+	@property
+	def get_team_member(self):
+		return self.team_member.all()
+	
+
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
 	fields = ['name', 'description', 'year', 'semester', 'instructor', 'facilitator', 'team_member', 'keyword', 'language', 'framework', 'github', 'project_management', 'website', 'is_hidden', 'last_modified', 'created']
