@@ -25,6 +25,7 @@ class Project(models.Model):
 	team_member = models.ManyToManyField('TeamMember', related_name='projects')
 	keyword = models.ManyToManyField('Keyword', related_name='projects')
 	language = models.ManyToManyField('Language', related_name='projects')
+	framework = models.ManyToManyField('Framework', related_name='projects')
 	github = models.URLField(null=True, blank=True)
 	project_management = models.URLField(null=True, blank=True)
 	website = models.URLField(null=True, blank=True)
@@ -37,10 +38,10 @@ class Project(models.Model):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-	fields = ['name', 'description', 'year', 'semester', 'instructor', 'facilitator', 'team_member', 'keyword', 'language', 'github', 'project_management', 'website', 'is_hidden', 'last_modified', 'created']
+	fields = ['name', 'description', 'year', 'semester', 'instructor', 'facilitator', 'team_member', 'keyword', 'language', 'framework', 'github', 'project_management', 'website', 'is_hidden', 'last_modified', 'created']
 	readonly_fields = ['last_modified', 'created']
 	list_display = ['id', 'name', 'description', 'year', 'semester', 'instructor_link', 'facilitator_link', 'github', 'project_management', 'website', 'is_hidden', 'last_modified', 'created']
-	list_filter = ['is_hidden', 'instructor', 'facilitator', 'team_member', 'keyword', 'semester', 'year']
+	list_filter = ['is_hidden', 'instructor', 'facilitator', 'team_member', 'keyword', 'language', 'framework', 'semester', 'year']
 	search_fields = ['name', 'year', 'semester']
 
 	def instructor_link(self, obj):
@@ -98,6 +99,21 @@ class Language(models.Model):
 
 @admin.register(Language)
 class LanguageAdmin(admin.ModelAdmin):
+	fields = ['name',  'last_modified', 'created']
+	readonly_fields = ['last_modified', 'created']
+	list_display = ['id', 'name', 'last_modified', 'created']
+	search_fields = ['name']
+
+class Framework(models.Model):
+	name = models.CharField(max_length=255)
+	created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+	last_modified = models.DateTimeField(auto_now=True)
+
+	def __str__(self):
+		return "{}".format(self.name)
+
+@admin.register(Framework)
+class FrameworkAdmin(admin.ModelAdmin):
 	fields = ['name',  'last_modified', 'created']
 	readonly_fields = ['last_modified', 'created']
 	list_display = ['id', 'name', 'last_modified', 'created']
