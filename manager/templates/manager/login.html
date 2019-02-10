@@ -1,0 +1,15 @@
+{% extends 'manager/base.html'  %}
+
+{% block content %}
+    <h2 style="margin-bottom: 30px; text-align: center;">Login</h2>
+        
+    <div class="d-flex flex-wrap align-self-center">
+        <div id="login_form_div" class="flex-panel" style="width: 330px; background: none;">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ login_form }}
+                <button id="login_button" class="btn btn-netscout w-100 m-1" type="submit" tabindex="3">Login</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

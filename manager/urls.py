@@ -5,7 +5,8 @@ from django.shortcuts import render
 import manager.views as views
 
 urlpatterns = [
-	
 	path('', views.main, name='main'),
-
+	path('auth/login/', views.login_user, name='login'),
+	path('auth/logout/', views.logout_user, name='logout'),
+	path('upload/', views.upload, name='upload'),
 ]
