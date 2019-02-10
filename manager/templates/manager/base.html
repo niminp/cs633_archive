@@ -24,7 +24,20 @@
 			</div>
 		</nav>
 
-		{% block content %}{% endblock %}
+		{% for err in errors %}
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				{{ err }}
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		{% endfor %}
+
+		<div id="contentwrapper" class="d-flex py-3">
+			<div id="content" class="mx-auto">
+				{% block content %}{% endblock %}
+			</div>
+		</div>
 
 		<!--FOOTER-->
 		<div class="fixed-bottom jumbotron jumbotron-fluid m-0 p-3 v-100">
