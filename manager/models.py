@@ -29,6 +29,7 @@ class Project(models.Model):
 	github = models.URLField(null=True, blank=True)
 	project_management = models.URLField(null=True, blank=True)
 	website = models.URLField(null=True, blank=True)
+	file = models.FileField(upload_to='documents/', blank=True, null=True)
 	is_hidden = models.BooleanField()
 	created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 	last_modified = models.DateTimeField(auto_now=True)
@@ -43,7 +44,7 @@ class Project(models.Model):
 
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
-	fields = ['name', 'description', 'year', 'semester', 'instructor', 'facilitator', 'team_member', 'keyword', 'language', 'framework', 'github', 'project_management', 'website', 'is_hidden', 'last_modified', 'created']
+	fields = ['name', 'description', 'year', 'semester', 'instructor', 'facilitator', 'team_member', 'keyword', 'language', 'framework', 'github', 'project_management', 'website', 'file', 'is_hidden', 'last_modified', 'created']
 	readonly_fields = ['last_modified', 'created']
 	list_display = ['id', 'name', 'description', 'year', 'semester', 'instructor_link', 'facilitator_link', 'github', 'project_management', 'website', 'is_hidden', 'last_modified', 'created']
 	list_filter = ['is_hidden', 'instructor', 'facilitator', 'team_member', 'keyword', 'language', 'framework', 'semester', 'year']
