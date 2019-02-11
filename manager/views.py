@@ -39,5 +39,6 @@ def logout_user(request):
 	logout(request)
 	return redirect(reverse("main"))
 
+@login_required
 def upload(request):
 	return render(request, 'manager/upload.html', {'projects': Project.objects.all()})
