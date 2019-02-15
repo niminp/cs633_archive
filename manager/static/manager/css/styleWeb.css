@@ -1,0 +1,30 @@
+body{
+    background-color: #304345;
+    font-size: 14pt;
+    color: #DCEBDD;
+    font-family: 'Arvo', serif;
+    /*font-family: 'Work Sans', sans-serif;*/
+    height: 100%;
+}
+header{
+    order: 1;
+    background: #304345;
+    border: 1px solid cyan;
+    top: 0px;
+    position: fixed;
+    margin-bottom:5%;
+    font-family: 'Major Mono Display', monospace;
+}
+h1{
+    color: #DCEBDD;
+}
+footer{
+    justify-content: center;
+   /* position: fixed;
+    bottom: 0px;*/
+    font-family: 'Major Mono Display', monospace;
+    font-size: 75%;
+    /*align-items: baseline;
+    background: #304345;
+    width: 100%*/
+}
