@@ -1,0 +1,72 @@
+{% extends 'manager/base.html'  %}
+
+{% block content %}
+<div class="container-fluid mt-3 w-75">
+	{% if request.user.is_authenticated or not project.is_hidden %}
+		<h3>Project Details</h3>
+
+		<b>Project Name:</b> {{ project.name }}<br>
+		<b>Semester:</b> {{ project.semester }}<br>
+		<b>Year:</b> {{ project.year }}<br>
+		<b>Description:</b><br>
+		{{ project.description }}<br>
+		{% if project.website %}
+			<b>Website Link:</b> <a href="{{ project.website }}">{{ project.website }}</a><br>
+		{% endif %}
+		{% if project.github %}
+			<b>GitHub Link:</b> <a href="{{ project.github }}">{{ project.github }}</a><br>
+		{% endif %}
+		{% if project.project_management %}
+			<b>Project Management Link:</b> <a href="{{ project.project_management }}">{{ project.project_management }}</a><br>
+		{% endif %}
+		{% if project.file %}
+			<b>File Download:</b> <a href="/{{ project.file }}" download="{{ project.file }}">Download</a><br>
+		{% endif %}
+		<hr>
+		<b>Instructor:</b> {{ project.instructor.first_name }} {{ project.instructor.last_name }} ({{ project.instructor.username }})<br>
+		<b>Faciliator:</b>
+		<ul>
+			{% for facilitator in project.get_facilitator %}
+				<li>{{ project.instructor.first_name }} {{ project.instructor.last_name }} ({{ project.instructor.username }})</li>
+			{% empty %}
+				<li>None</li>
+			{% endfor %}
+		</ul>
+		<hr>
+		<b>Team Members:</b>
+		<ul>
+			{% for team_member in project.get_team_member %}
+				<li>{{ team_member.name }}</li>
+			{% empty %}
+				<li>None</li>
+			{% endfor %}
+		</ul>
+		<b>Programming Languages:</b>
+		<ul>
+			{% for language in project.get_language %}
+				<li>{{ language.name }}</li>
+			{% empty %}
+				<li>None</li>
+			{% endfor %}
+		</ul>
+		<b>Frameworks:</b>
+		<ul>
+			{% for framework in project.get_framework %}
+				<li>{{ framework.name }}</li>
+			{% empty %}
+				<li>None</li>
+			{% endfor %}
+		</ul>
+		<b>Keywords:</b>
+		<ul>
+			{% for keyword in project.get_keyword %}
+				<li>{{ keyword.word }}</li>
+			{% empty %}
+				<li>None</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<h4>You are not authorized to view this project</h4>
+	{% endif %}
+</div>
+{% endblock %}

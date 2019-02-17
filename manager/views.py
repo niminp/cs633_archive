@@ -39,8 +39,16 @@ def logout_user(request):
 	logout(request)
 	return redirect(reverse("main"))
 
-def project(request):
-	return render(request, 'manager/upload.html', {'projects': Project.objects.all()})
+def project(request, project_id):
+	errors = []
+
+	try: 
+		project = Project.objects.get(id=project_id)
+	except: 
+		errors.append("Invalid Project ID")
+
+
+	return render(request, 'manager/project_view.html', {'project': project, 'errors': errors})
 
 @login_required
 def upload(request):
