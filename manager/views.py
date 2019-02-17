@@ -39,6 +39,15 @@ def logout_user(request):
 	logout(request)
 	return redirect(reverse("main"))
 
+def project(request):
+	return render(request, 'manager/upload.html', {'projects': Project.objects.all()})
+
 @login_required
 def upload(request):
-	return render(request, 'manager/upload.html', {'projects': Project.objects.all()})
+	other_data = {
+		'framework': Framework.objects.all(),
+		'language': Language.objects.all(),
+		'team_member': TeamMember.objects.all(),
+		'keyword': Keyword.objects.all(),
+	}
+	return render(request, 'manager/upload.html', {'projects': Project.objects.all(), 'other_data': other_data})

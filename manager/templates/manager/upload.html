@@ -3,6 +3,35 @@
 {% block js %}
 <script type="text/javascript">
 	$(document).ready(function() {
+
+		var framework = [
+			{% for framework in other_data.framework %}
+				"{{ framework.name }}",
+			{% endfor%}
+		]
+		$( '#add-frameworks-in' ).typeahead( { source:framework } );
+
+		var language = [
+			{% for language in other_data.language %}
+				"{{ language.name }}",
+			{% endfor%}
+		]
+		$( '#add-programming-languages-in' ).typeahead( { source:language } );
+
+		var keyword = [
+			{% for keyword in other_data.keyword %}
+				"{{ keyword.word }}",
+			{% endfor%}
+		]
+		$( '#add-keywords-in' ).typeahead( { source:keyword } );
+
+		var team_member = [
+			{% for team_member in other_data.team_member %}
+				"{{ team_member.name }}",
+			{% endfor%}
+		]
+		$( '#add-team-members-in' ).typeahead( { source:team_member } );
+
 		// Team-Members
 		$( "#add-team-members-btn" ).click((e) => {
 			var value = $( "#add-team-members-in" ).val();
@@ -119,7 +148,7 @@
 					<!-- Here goes Team-Members -->
 				</div>
 				<div class="input-group my-3">
-					<input id="add-team-members-in" type="text" class="form-control typeahead">
+					<input id="add-team-members-in" type="text" class="form-control">
 					<div class="input-group-append">
 						<button id="add-team-members-btn" class="btn btn-outline-secondary" type="button">+</button>
 					</div>
