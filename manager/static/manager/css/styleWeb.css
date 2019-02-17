@@ -1,0 +1,73 @@
+body{
+    background-color: #304345;
+    font-size: 14pt;
+    color: #DCEBDD;
+    font-family: 'Arvo', serif;
+    /*font-family: 'Work Sans', sans-serif;*/
+    height: 100%;
+}
+.nav-item {
+  color: #DCEBDD;
+ }
+#header{
+    background: #304345;
+    color: #DCEBDD;
+    font-family: 'Major Mono Display', monospace;
+}
+h1{
+    color: #DCEBDD;
+}
+h2{
+    color: #DCEBDD;
+    font-family: 'Major Mono Display', monospace; 
+}
+
+#project_name{
+    color: #304345;
+}
+#footer{
+    background: #304345;
+    justify-content: center;
+    font-family: 'Major Mono Display', monospace;
+    font-size: 50%;
+    text-align: center;
+    align-items: baseline;
+    height: 7%;
+    width: 100%;
+}
+.text-muted{
+    font-family: 'Major Mono Display', monospace;
+}
+#upload-btn{
+    font-family: 'Major Mono Display', monospace;
+
+    border-radius: 4px;
+    border: 2px #AD9A32 solid;
+    cursor: pointer;
+    background: linear-gradient(to bottom right, #DCEBDD, #789AA0);
+    color: #304345;
+    text-shadow: 1px 1px #FFF;
+}
+.btn{
+    text-align: center;
+    width: 10em;
+    
+    margin-top: 0.5%;
+    margin-left: 20%;
+    border-radius: 4px;
+    border: 2px #AD9A32 solid;
+    cursor: pointer;
+    background: linear-gradient(to bottom right, #DCEBDD, #789AA0);
+    color: #304345;
+    font-family: 'Major Mono Display', monospace;
+    font-size: 1em;
+    text-shadow: 1px 1px #FFF;
+}
+.modal, .modal-body, .modal-title{
+    /*background-color: #DCEBDD;*/
+    color: #304345;
+}
+.lightTextFormatted{
+    color: #DCEBDD;
+    font-family: 'Major Mono Display', monospace; 
+}
