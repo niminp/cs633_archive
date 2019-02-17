@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+	{%load static%}
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,12 +10,12 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<!-- Styling -->
 		<link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">
-		<link href="styleWeb.css" rel="stylesheet">
-		<title>A R C H I V E | Group 3</title>
+		<link href="{%static 'manager/css/styleWeb.css'%}" rel="stylesheet">
+		<title>local_file</title>
 	</head>
 	<body>
 		<!--HEADER-->
-		<nav id="header" class="navbar navbar-expand-lg navbar-light bg-white bottom_shadow">
+		<nav id="header" class="navbar navbar-expand-lg navbar-light">
 				<a class="navbar-brand mr-auto" href="{% url 'main' %}" style="">
 					<span id="title"><h2>Archive</h2></span>
 				</a>
@@ -26,18 +27,18 @@
 				<div id="navbar-menu" class="navbar-collapse collapse">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item">
-							<a class="nav-link" href="{% url 'main' %}">All Projects</a>
+							<a class="nav-link" href="{% url 'main' %}">all projects</a>
 						</li>
 						{% if user.is_authenticated %}
 							<li class="nav-item">
-								<a class="nav-link" href="{% url 'upload' %}">Upload Project</a>
+								<a class="nav-link" href="{% url 'upload' %}">upload project</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="{% url 'logout' %}">Sign Out</a>
+								<a class="nav-link" href="{% url 'logout' %}">sign out</a>
 							</li>
 						{% else %}
 							<li class="nav-item">
-								<a class="nav-link" href="{% url 'login' %}">Sign In</a>
+								<a class="nav-link" href="{% url 'login' %}">sign in</a>
 							</li>
 						{% endif %}
 					</ul>
@@ -60,8 +61,8 @@
 		</div>
 
 		<!--FOOTER-->
-		<div class="fixed-bottom jumbotron jumbotron-fluid m-0 p-3 v-100">
-		<p class="lead">2018 Fall CS 673 Past Project Repository</p>
+		<div class="fixed-bottom jumbotron jumbotron-fluid m-0 p-3 v-100" id="footer">
+			<p class="lead">&copy;2019—group 3: nimin·lori·hardik·diana·luis&mdash;all rights reserved</p>
 		</div>
 	</body>
 </html>
