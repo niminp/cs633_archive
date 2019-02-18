@@ -29,7 +29,7 @@ class Project(models.Model):
 	github = models.URLField(null=True, blank=True)
 	project_management = models.URLField(null=True, blank=True)
 	website = models.URLField(null=True, blank=True)
-	file = models.FileField(upload_to='documents/', blank=True, null=True)
+	file = models.FileField(upload_to='static/documents/', blank=True, null=True)
 	is_hidden = models.BooleanField()
 	created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 	last_modified = models.DateTimeField(auto_now=True)
@@ -38,8 +38,24 @@ class Project(models.Model):
 		return "{}".format(self.name)
 
 	@property
+	def get_facilitator(self):
+		return self.facilitator.all()
+
+	@property
 	def get_team_member(self):
 		return self.team_member.all()
+
+	@property
+	def get_keyword(self):
+		return self.keyword.all()
+
+	@property
+	def get_language(self):
+		return self.language.all()
+
+	@property
+	def get_framework(self):
+		return self.framework.all()
 	
 
 @admin.register(Project)
