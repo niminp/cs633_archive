@@ -1,3 +1,5 @@
+*.DS_Store
 *.pyc
 documents/*
 static/*
+db.sqlite3
