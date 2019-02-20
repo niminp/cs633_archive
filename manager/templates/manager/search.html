@@ -1,0 +1,52 @@
+{% extends 'manager/base.html'  %}
+
+{% block js %}
+<script type="text/javascript">
+	$(document).ready(function() {
+		//$( "#search-in" ).keypress((e) => {
+			// if ( e.which == 13 ) {
+				var value = $( "#search-in" ).val();
+				
+				if (value != "" && search_keywords.indexOf(value) == -1) {
+					search_keywords.push(value);
+
+					$( "#search-div" ).append(
+						'<div class="m-1 d-inline-block alert alert-secondary alert-dismissible fade show" role="alert">' +
+						'<strong>' + value + '</strong>' +
+						'<button type="button" class="close" data-dismiss="alert" onclick="search_remove(\'' + value + '\');">' +
+						'<span aria-hidden="true">&times;</span>' +
+						'</button>' +
+						'</div>'
+					);
+					$( "#search-in" ).val("");
+				}
+				$( "#search-in" ).focus();
+
+			// }
+		//});
+	});
+
+	function search_remove(name){
+		search_keywords = search_keywords.filter(e => e !== name)
+	}
+</script>
+{% endblock %}
+
+{% block content %}
+	<div class="col-md">
+		<div class="lightTextFormatted">
+		 	<h3 class="text-muted text-center">search</h3>
+		</div>
+		<div class="input-group my-3" >
+			<form action="" method="post" class="mx-auto">
+				{% csrf_token %}
+				<input id="search-in" type="text" name="search" class="form-control text" style="width: 600px;" placeholder="Search">
+			</form>
+		</div>
+	</div>
+	{% if search_keywords %}
+		<h5 class="text-center">Showing results for: {{ search_keywords }}</h5>
+	{% endif %}
+
+	{% include "manager/project.html" %}
+{% endblock %}
