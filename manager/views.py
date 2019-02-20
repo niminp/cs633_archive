@@ -8,7 +8,12 @@ from django.db.models import Q
 import manager.forms as forms
 
 def main(request):
-	return render(request, 'manager/main.html', {'projects': Project.objects.all()})
+	if request.user.is_authenticated:
+		projects = Project.objects.all()
+	else:
+		projects = Project.objects.filter(is_hidden=False)
+
+	return render(request, 'manager/main.html', {'projects': projects})
 
 def login_user(request, errors=None):
 	if errors is None:
