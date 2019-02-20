@@ -51,7 +51,7 @@ def project(request, project_id):
 		else:
 			project = Project.objects.get(id=project_id, is_hidden=False)
 	except: 
-		errors.append("Invalid Project ID")
+		pass
 
 
 	return render(request, 'manager/project_view.html', {'project': project, 'errors': errors})
