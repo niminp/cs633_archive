@@ -6,7 +6,7 @@ from manager.models import *
 import manager.forms as forms
 
 def main(request):
-	return render(request, 'manager/project.html', {'projects': Project.objects.all()})
+	return render(request, 'manager/main.html', {'projects': Project.objects.all()})
 
 def login_user(request, errors=None):
 	if errors is None:
