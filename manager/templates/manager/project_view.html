@@ -27,7 +27,7 @@
 		<b>Faciliator:</b>
 		<ul>
 			{% for facilitator in project.get_facilitator %}
-				<li>{{ project.facilitator.first_name }} {{ project.facilitator.last_name }} ({{ project.facilitator.username }})</li>
+				<li>{{ facilitator.first_name }} {{ facilitator.last_name }} ({{ facilitator.username }})</li>
 			{% empty %}
 				<li>None</li>
 			{% endfor %}
