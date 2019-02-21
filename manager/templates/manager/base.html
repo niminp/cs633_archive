@@ -14,7 +14,7 @@
 		<!-- Styling -->
 		<link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">
 		<link href="{%static 'manager/css/styleWeb.css'%}" rel="stylesheet">
-		<title>local_file</title>
+		<title>Archive</title>
 	</head>
 	<body>
 		<!--HEADER-->
@@ -31,6 +31,9 @@
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item">
 							<a class="nav-link" href="{% url 'main' %}">all projects</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'search' %}">search</a>
 						</li>
 						{% if user.is_authenticated %}
 							<li class="nav-item">

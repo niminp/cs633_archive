@@ -3,10 +3,17 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required, user_passes_test
 from manager.models import *
+from django.db.models import Q
+# import operator, functools
 import manager.forms as forms
 
 def main(request):
-	return render(request, 'manager/project.html', {'projects': Project.objects.all()})
+	if request.user.is_authenticated:
+		projects = Project.objects.all()
+	else:
+		projects = Project.objects.filter(is_hidden=False)
+
+	return render(request, 'manager/main.html', {'projects': projects})
 
 def login_user(request, errors=None):
 	if errors is None:
@@ -41,14 +48,66 @@ def logout_user(request):
 
 def project(request, project_id):
 	errors = []
+	project = None
 
 	try: 
-		project = Project.objects.get(id=project_id)
+		if request.user.is_authenticated:
+			project = Project.objects.get(id=project_id)
+		else:
+			project = Project.objects.get(id=project_id, is_hidden=False)
 	except: 
-		errors.append("Invalid Project ID")
+		pass
 
 
 	return render(request, 'manager/project_view.html', {'project': project, 'errors': errors})
+
+def search(request):
+	errors = []
+	projects = []
+	search_keywords = None
+
+	if request.method == 'POST':
+		search_keywords = request.POST['search']
+
+		if search_keywords:
+			if request.user.is_authenticated:
+				all_projects = Project.objects.all()
+			else: 
+				all_projects = Project.objects.filter(is_hidden=False)
+
+			search_keywords_list = search_keywords.split(" ")
+			try: 
+				search_keywords_list.remove("")
+			except:
+				pass
+
+			try:
+				search_keywords_list.remove(" ")
+			except:
+				pass
+
+			for keyword in search_keywords_list:
+				projects += list(
+					all_projects.filter(
+						Q(name__contains=keyword) | 
+						Q(description__contains=keyword) | 
+						Q(year__contains=keyword) | 
+						Q(semester__contains=keyword) | 
+						Q(instructor__username__contains=keyword) | 
+						Q(instructor__first_name__contains=keyword) | 
+						Q(instructor__last_name__contains=keyword) | 
+						Q(facilitator__username__contains=keyword) | 
+						Q(facilitator__first_name__contains=keyword) | 
+						Q(facilitator__last_name__contains=keyword) | 
+						Q(framework__name__contains=keyword) | 
+						Q(language__name__contains=keyword) | 
+						Q(team_member__name__contains=keyword) | 
+						Q(keyword__word__contains=keyword)
+					)
+				)
+				
+
+	return render(request, 'manager/search.html', {'projects': set(projects), 'search_keywords': search_keywords, 'errors': errors})
 
 @login_required
 def upload(request):
