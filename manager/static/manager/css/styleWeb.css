@@ -21,7 +21,10 @@ h2{
     color: #DCEBDD;
     font-family: 'Major Mono Display', monospace; 
 }
-
+h3{
+    color: #DCEBDD;
+    font-family: 'Major Mono Display', monospace; 
+}
 #project_name{
     color: #304345;
 }
@@ -50,7 +53,7 @@ h2{
 }
 .btn{
     text-align: center;
-    width: 10em;
+    width: 5em;
     
     margin-top: 0.5%;
     margin-left: 20%;
@@ -67,7 +70,8 @@ h2{
     /*background-color: #DCEBDD;*/
     color: #304345;
 }
-.lightTextFormatted{
-    color: #DCEBDD;
+.nav-link, .nave-item{
+    /*color: #DCEBDD;*/
+    color: pink;
     font-family: 'Major Mono Display', monospace; 
 }
