@@ -33,38 +33,46 @@
 			{% endfor %}
 		</ul>
 		<hr>
-		<b>Team Members:</b>
-		<ul>
-			{% for team_member in project.get_team_member %}
-				<li>{{ team_member.name }}</li>
-			{% empty %}
-				<li>None</li>
-			{% endfor %}
-		</ul>
-		<b>Programming Languages:</b>
-		<ul>
-			{% for language in project.get_language %}
-				<li>{{ language.name }}</li>
-			{% empty %}
-				<li>None</li>
-			{% endfor %}
-		</ul>
-		<b>Frameworks:</b>
-		<ul>
-			{% for framework in project.get_framework %}
-				<li>{{ framework.name }}</li>
-			{% empty %}
-				<li>None</li>
-			{% endfor %}
-		</ul>
-		<b>Keywords:</b>
-		<ul>
-			{% for keyword in project.get_keyword %}
-				<li>{{ keyword.word }}</li>
-			{% empty %}
-				<li>None</li>
-			{% endfor %}
-		</ul>
+		{% if project.get_team_member %}
+			<b>Team Members:</b>
+			<ul>
+				{% for team_member in project.get_team_member %}
+					<li>{{ team_member.name }}</li>
+				{% empty %}
+					<li>None</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		{% if project.get_language %}
+			<b>Programming Languages:</b>
+			<ul>
+				{% for language in project.get_language %}
+					<li>{{ language.name }}</li>
+				{% empty %}
+					<li>None</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		{% if project.get_framework %}
+			<b>Frameworks:</b>
+			<ul>
+				{% for framework in project.get_framework %}
+					<li>{{ framework.name }}</li>
+				{% empty %}
+					<li>None</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		{% if project.get_keyword %}
+			<b>Keywords:</b>
+			<ul>
+				{% for keyword in project.get_keyword %}
+					<li>{{ keyword.word }}</li>
+				{% empty %}
+					<li>None</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
 	{% else %}
 		<h4 class="text-center" style="width: 300px;">No projects found with this ID</h4>
 	{% endif %}
