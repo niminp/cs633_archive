@@ -13,12 +13,13 @@
 		{% block css %}{% endblock %}
 		<!-- Styling -->
 		<link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">
-		<link href="{%static 'manager/css/styleWeb.css'%}" rel="stylesheet">
+		<link href="{%static 'manager/css/styleWeb1.css'%}" rel="stylesheet">
 		<title>A R C H I V E | Group 3</title>
 	</head>
 	<body>
 		<!--HEADER-->
-		<nav id="header" class="navbar navbar-expand-lg navbar-light">
+		<nav id="header" class="navbar navbar-expand-lg">
+		<!--<nav id="header" class="navbar navbar-expand-lg navbar-light">-->
 				<a class="navbar-brand mr-auto" href="{% url 'main' %}" style="">
 					<span id="title"><h2>ARchive</h2></span>
 				</a>
@@ -27,15 +28,17 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 
-				<div id="navbar-menu" class="navbar-collapse collapse">
+				<div id="navbar-menu" class="navbar-collapse collapse" style="color: #DCEBDD;">
 					<ul class="navbar-nav ml-auto">
 						<li class="nav-item">
 							<a class="nav-link" href="{% url 'main' %}">all projects</a>
 						</li>
+						<!--<li class="nav-link">&brvbar;</li>-->
 						{% if user.is_authenticated %}
 							<li class="nav-item">
 								<a class="nav-link" href="{% url 'upload' %}">upload project</a>
 							</li>
+							<!--<li class="nav-link">&brvbar;</li>-->
 							<li class="nav-item">
 								<a class="nav-link" href="{% url 'logout' %}">sign out</a>
 							</li>
@@ -64,8 +67,11 @@
 		</div>
 
 		<!--FOOTER-->
-		<div class="bottom jumbotron jumbotron-fluid m-0 p-3 v-100" id="footer">
-			<p class="lead">&copy;2019—group 3: nimin·lori·hardik·diana·luis&mdash;all rights reserved</p>
-		</div>
+		<!--<div class="bottom jumbotron jumbotron-fluid m-0 p-3 v-100" id="footer">
+			<p class="lead">&copy;2019—group 3&brvbar; nimin&verbar;lori&verbar;hardik&verbar;diana&verbar;luis&mdash;all rights reserved</p>
+		</div>-->
+		<footer class="footer">
+			<p class="lead">&copy;2019&mdash;<a class="foot-link" href="http://www.bu.edu/csmet/cs633/" target="_blank">group 3</a>&brvbar; <a class="foot-link" href="https://www.linkedin.com/in/nimin-patel-b483aa5a/" target="_blank">nimin</a>&verbar;<a class="foot-link" href="https://www.linkedin.com/in/lorischoenhard/" target="_blank">lori</a>&verbar;<a class="foot-link" href="https://www.linkedin.com/in/hgami07/" target="_blank">hardik</a>&verbar;<a class="foot-link" href="https://www.linkedin.com/in/diana-ombui-755421172/" target="_blank">diana</a>&verbar;<a class="foot-link" href="https://www.linkedin.com/in/luis-gimenez-6944862b/" target="_blank">luis</a>&mdash;all rights reserved</p>
+		</footer>
 	</body>
 </html>

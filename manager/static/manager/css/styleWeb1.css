@@ -6,9 +6,6 @@ body{
     /*font-family: 'Work Sans', sans-serif;*/
     height: 100%;
 }
-/*.nav-item {
-  color: #DCEBDD;
- }*/
 #header{
     background: #304345;
     color: #DCEBDD;
@@ -31,24 +28,56 @@ hr{
 #project_name{
     color: #304345;
 }
-#footer{
-    bottom: 0px;
-    background-color: red;
+/*#footer{
+    bottom: 0%;*/
+    /*position: absolute;*/
+    /*position: relative;
+    background-color: red;*/
     /*background: #304345;*/
+    /*justify-content: center;
+    font-family: 'Major Mono Display', monospace;
+    font-size: 50%;
+    text-align: center;*/
+    /*align-items: baseline;*/
+    /*height: 3%;
+    width: 100%;
+}*/
+
+.footer{
+    bottom: 0%;
+    /*position: absolute;*/
+    position: relative;
+    /*background-color: red;*/
+    background-color: #304345;
     justify-content: center;
     font-family: 'Major Mono Display', monospace;
     font-size: 50%;
     text-align: center;
-    align-items: baseline;
-    height: 4%;
+    height: 3%;
     width: 100%;
+    text-decoration: none;
 }
+.foot-link:link{
+    color: #789AA0;
+    text-decoration: none;
+}
+.foot-link:hover{
+    background-color: #DCEBDD;
+    color: #304345;
+}
+.foot-link:active{
+    color: #AD9A32;
+}
+.foot-link:visited{
+    color: #AD9A32;
+}
+
+
 .text-muted{
     font-family: 'Major Mono Display', monospace;
 }
 #upload-btn{
     font-family: 'Major Mono Display', monospace;
-
     border-radius: 4px;
     border: 2px #AD9A32 solid;
     cursor: pointer;
@@ -58,7 +87,6 @@ hr{
 }
 #dwnload-btn{
     font-family: 'Major Mono Display', monospace;
-
     border-radius: 4px;
     border: 2px #AD9A32 solid;
     cursor: pointer;
@@ -69,7 +97,6 @@ hr{
 .btn{
     text-align: center;
     width: 5em;
-    
     margin-top: 0.5%;
     margin-left: 20%;
     border-radius: 4px;
@@ -82,7 +109,6 @@ hr{
     text-shadow: 1px 1px #FFF;
 }
 .modal, .modal-body, .modal-title{
-    /*background-color: #DCEBDD;*/
     color: #304345;
 }
 /* Navigation links */
@@ -97,26 +123,28 @@ hr{
 .nav-link:active{
     color: #AD9A32;
 }
-.nav-link:visited{
+/*.nav-link:visited{
     color: #789AA0;
-
-}
-/*#dwnld>a:link{*/
+}*/
 #dwnld{
-    /*text-decoration: none;*/
     color: #AD9A32;
     font-family: 'Major Mono Display', monospace;
 }
-/*.nav-link:hover{
-    background-color: #DCEBDD;
-    color: #AD9A32;
+#dwnld:hover{
+    /*background-color: #DCEBDD40;*/
+    background-color: #789AA040;
+    text-decoration: none;
 }
-.nav-link{
+.item{
+    font-family: 'Major Mono Display', monospace;
     color: #789AA0;
 }
-.nav-link:visited{
-    color: pink;
+.card-header{
+    text-decoration: none;
+    color: #304345;
 }
-.nav-link{
+.card-text{
+    text-transform: lowercase;
+    font-family: 'Major Mono Display', monospace;
     color: #789AA0;
-}*/
+}
