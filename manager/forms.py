@@ -28,6 +28,8 @@ class ProjectUpload(forms.Form):
 	year = forms.IntegerField(label="Year*")
 	year.widget.attrs.update({
 		'class': 'form-control',
+		'min': 2000,
+		'max': 3000,
 		'tabindex' : '3',
 	})
 
