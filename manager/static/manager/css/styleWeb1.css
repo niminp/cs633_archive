@@ -113,7 +113,7 @@ hr{
 }
 /* Navigation links */
 .nav-link:link{
-    color: #789AA0;
+    color: #DCEBDD;
     text-decoration: none;
 }
 .nav-link:hover{
@@ -123,9 +123,9 @@ hr{
 .nav-link:active{
     color: #AD9A32;
 }
-/*.nav-link:visited{
+.nav-link:visited{
     color: #789AA0;
-}*/
+}
 #dwnld{
     color: #AD9A32;
     font-family: 'Major Mono Display', monospace;
@@ -147,4 +147,16 @@ hr{
     text-transform: lowercase;
     font-family: 'Major Mono Display', monospace;
     color: #789AA0;
+}
+/*.navbar-toggler-icon, .navbar-toggler{*/
+.navbar-toggler-icon{
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(220, 235, 221, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    color: #DCEBDD;
+    align-items: baseline;
+}
+.test1{
+    background-color: #789AA0;
+}
+#content{
+    min-width: 80%;
 }
