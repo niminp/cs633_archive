@@ -20,7 +20,7 @@
 			<b>Project Management Link:</b> <a href="{{ project.project_management }}">{{ project.project_management }}</a><br>
 		{% endif %}
 		{% if project.file %}
-			<b>File Download:</b> <a href="/{{ project.file }}" download="{{ project.file }}">Download</a><br>
+			<b>File Download:</b> <a href="{{ project.file.url }}" download>Download</a><br>
 		{% endif %}
 		<hr>
 		<b>Instructor:</b> {{ project.instructor.first_name }} {{ project.instructor.last_name }} ({{ project.instructor.username }})<br>
