@@ -164,6 +164,10 @@
 		var keyword_current = $('input[type=hidden][name=keyword]').val()
 		$('input[type=hidden][name=keyword]').val(keyword_current.replace(name+"|", ""))
 	}
+
+	function clear_file_path(event){
+		$('input[name=file]').val("");
+	}
 </script>
 {% endblock %}
 
@@ -214,6 +218,9 @@
 								<label for="{{ field.name }}" style="width:100%; text-align: left;">{{ field.label }}</label>
 							{% endif %}
 							{{ field }}
+							{% if field.name == 'file' %}
+								<br><button type="button" onclick="clear_file_path()">Clear File</button>
+							{% endif %}
 							{% for error in field.errors %}
 								<p style="text-align: left; color: red;">{{ error }}</p>
 							{% endfor %}
