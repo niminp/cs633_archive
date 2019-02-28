@@ -34,8 +34,8 @@
 
 		// Team-Members
 		$( "#add-team-members-btn" ).click((e) => {
-			var team_member_current = $('input[type=hidden][name=team_member]').val()
-			var value = $( "#add-team-members-in" ).val();
+			var team_member_current = $('input[type=hidden][name=team_member]').val().toLowerCase();
+			var value = $( "#add-team-members-in" ).val().toLowerCase();
 
 			if (value != "" && team_member_current.indexOf(value) == -1) {
 				$('input[type=hidden][name=team_member]').val(team_member_current + value + "|")
@@ -61,8 +61,8 @@
 
 		// Programming-Languages
 		$( "#add-programming-languages-btn" ).click((e) => {
-			var language_current = $('input[type=hidden][name=language]').val()
-			var value = $( "#add-programming-languages-in" ).val();
+			var language_current = $('input[type=hidden][name=language]').val().toLowerCase();
+			var value = $( "#add-programming-languages-in" ).val().toLowerCase();
 			
 			if (value != "" && language_current.indexOf(value) == -1) {
 				$('input[type=hidden][name=language]').val(language_current + value + "|")
@@ -88,8 +88,8 @@
 
 		// Frameworks
 		$( "#add-frameworks-btn" ).click((e) => {
-			var framework_current = $('input[type=hidden][name=framework]').val()
-			var value = $( "#add-frameworks-in" ).val();
+			var framework_current = $('input[type=hidden][name=framework]').val().toLowerCase();
+			var value = $( "#add-frameworks-in" ).val().toLowerCase();
 
 			if (value != "" && framework_current.indexOf(value) == -1) {
 				$('input[type=hidden][name=framework]').val(framework_current + value + "|")
@@ -115,8 +115,8 @@
 
 		// Keywords
 		$( "#add-keywords-btn" ).click((e) => {
-			var keyword_current = $('input[type=hidden][name=keyword]').val()
-			var value = $( "#add-keywords-in" ).val();
+			var keyword_current = $('input[type=hidden][name=keyword]').val().toLowerCase();
+			var value = $( "#add-keywords-in" ).val().toLowerCase();
 
 			if (value != "" && keyword_current.indexOf(value) == -1) {
 				$('input[type=hidden][name=keyword]').val(keyword_current + value + "|")
