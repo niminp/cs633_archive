@@ -39,13 +39,13 @@ class ProjectUpload(forms.Form):
 		'tabindex' : '4',
 	})
 
-	instructor = forms.ModelChoiceField(label="Instructor*", queryset=User.objects.filter(is_active = True, is_staff = True, is_superuser=False))
+	instructor = forms.ModelChoiceField(label="Instructor*", queryset=User.objects.filter(is_active = True, is_staff = True))
 	instructor.widget.attrs.update({
 		'class': 'form-control',
 		'tabindex' : '5',
 	})
 
-	facilitator = forms.ModelMultipleChoiceField(label="Facilitator", queryset=User.objects.filter(is_active = True, is_staff = False, is_superuser=False), required=False)
+	facilitator = forms.ModelMultipleChoiceField(label="Facilitator", queryset=User.objects.filter(is_active = True, is_staff = False), required=False)
 	facilitator.widget.attrs.update({
 		'class': 'form-control',
 		'tabindex' : '6',
