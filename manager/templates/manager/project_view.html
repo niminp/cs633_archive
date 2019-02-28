@@ -84,7 +84,7 @@
 			{% if request.user.is_superuser or request.user.is_staff %}
 				<form action="{% url 'hide_project' project.id %}" method="post">
 					{% csrf_token %}
-					<button>Hide Project</button>
+					<button class="btn btn-primary">hide project</button>
 				</form>
 			{% endif %}
 		{% endif %}
@@ -93,10 +93,38 @@
 			{% if request.user.is_superuser or request.user.is_staff %}
 				<form action="{% url 'show_project' project.id %}" method="post">
 					{% csrf_token %}
-					<button>Make Project Visible</button>
+					<button class="btn btn-primary">unhide project</button>
 				</form>
 			{% endif %}
 		{% endif %}
+
+		{% if request.user.is_superuser or request.user.is_staff %}
+			<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">delete project</button>
+		{% endif %}
+
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+					All data will be lost. Are you sure you want to delete this project?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+						<form id="delete_project" action="{% url 'delete_project' project.id %}" method="post">
+							{% csrf_token %}
+							<button class="btn btn-primary">delete</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
 
 	{% else %}
 		<h4 class="text-center" style="width: 300px;">No projects found with this ID</h4>

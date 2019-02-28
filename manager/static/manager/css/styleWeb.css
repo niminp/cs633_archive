@@ -50,17 +50,10 @@ h2{
 }
 .btn{
     text-align: center;
-    width: 10em;
-    
-    margin-top: 0.5%;
-    margin-left: 20%;
-    border-radius: 4px;
-    border: 2px #AD9A32 solid;
     cursor: pointer;
     background: linear-gradient(to bottom right, #DCEBDD, #789AA0);
     color: #304345;
     font-family: 'Major Mono Display', monospace;
-    font-size: 1em;
     text-shadow: 1px 1px #FFF;
 }
 .modal, .modal-body, .modal-title{
