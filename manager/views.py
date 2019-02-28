@@ -58,8 +58,42 @@ def project(request, project_id):
 	except: 
 		pass
 
-
 	return render(request, 'manager/project_view.html', {'project': project, 'errors': errors})
+
+@login_required
+def hide_project(request, project_id):
+
+	if request.method == "POST":
+		project = Project.objects.get(id=project_id)
+		project.is_hidden = True
+		project.save()
+
+		return redirect(reverse("main"))
+	else:
+		return redirect(reverse("project", args=(project_id,)))
+
+@login_required
+def show_project(request, project_id):
+
+	if request.method == "POST":
+		project = Project.objects.get(id=project_id)
+		project.is_hidden = False
+		project.save()
+
+		return redirect(reverse("main"))
+	else:
+		return redirect(reverse("project", args=(project_id,)))
+
+@login_required
+def delete_project(request, project_id):
+
+	if request.method == "POST":
+		project = Project.objects.get(id=project_id)
+		project.delete()
+
+		return redirect(reverse("main"))
+	else:
+		return redirect(reverse("project", args=(project_id,)))
 
 def search(request):
 	errors = []
