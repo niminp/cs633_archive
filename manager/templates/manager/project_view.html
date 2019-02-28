@@ -3,6 +3,12 @@
 {% block content %}
 <div class="container-fluid mt-3 w-75">
 	{% if project %}
+		{% if project.is_hidden %}
+			<div class="alert alert-primary fade show" role="alert">
+				This is a hidden Project
+			</div>
+		{% endif %}
+
 		<h3>Project Details</h3>
 
 		<b>Project Name:</b> {{ project.name }}<br>
@@ -73,6 +79,25 @@
 				{% endfor %}
 			</ul>
 		{% endif %}
+
+		{% if not project.is_hidden %}
+			{% if request.user.is_superuser or request.user.is_staff %}
+				<form action="{% url 'hide_project' project.id %}" method="post">
+					{% csrf_token %}
+					<button>Hide Project</button>
+				</form>
+			{% endif %}
+		{% endif %}
+
+		{% if project.is_hidden %}
+			{% if request.user.is_superuser or request.user.is_staff %}
+				<form action="{% url 'show_project' project.id %}" method="post">
+					{% csrf_token %}
+					<button>Make Project Visible</button>
+				</form>
+			{% endif %}
+		{% endif %}
+
 	{% else %}
 		<h4 class="text-center" style="width: 300px;">No projects found with this ID</h4>
 	{% endif %}
