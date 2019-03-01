@@ -3,12 +3,8 @@ body{
     font-size: 14pt;
     color: #DCEBDD;
     font-family: 'Arvo', serif;
-    /*font-family: 'Work Sans', sans-serif;*/
     height: 100%;
 }
-/*.nav-item {
-  color: #DCEBDD;
- }*/
 #header{
     background: #304345;
     color: #DCEBDD;
@@ -34,7 +30,6 @@ hr{
 #footer{
     bottom: 0px;
     background-color: red;
-    /*background: #304345;*/
     justify-content: center;
     font-family: 'Major Mono Display', monospace;
     font-size: 50%;
@@ -75,7 +70,6 @@ hr{
     text-shadow: 1px 1px #FFF;
 }
 .modal, .modal-body, .modal-title{
-    /*background-color: #DCEBDD;*/
     color: #304345;
 }
 /* Navigation links */
@@ -94,22 +88,7 @@ hr{
     color: #789AA0;
 
 }
-/*#dwnld>a:link{*/
 #dwnld{
-    /*text-decoration: none;*/
     color: #AD9A32;
     font-family: 'Major Mono Display', monospace;
 }
-/*.nav-link:hover{
-    background-color: #DCEBDD;
-    color: #AD9A32;
-}
-.nav-link{
-    color: #789AA0;
-}
-.nav-link:visited{
-    color: pink;
-}
-.nav-link{
-    color: #789AA0;
-}*/
