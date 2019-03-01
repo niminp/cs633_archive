@@ -15,6 +15,7 @@
 		<link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet">
 		<link href="{%static 'manager/css/styleWeb1.css'%}" rel="stylesheet">
 		<title>A R C H I V E | Group 3</title>
+
 	</head>
 	<body>
 		<!--HEADER-->
@@ -34,7 +35,9 @@
 						<li class="nav-item">
 							<a class="nav-link" href="{% url 'main' %}">all projects</a>
 						</li>
-						<!--<li class="nav-link">&brvbar;</li>-->
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'search' %}">search</a>
+						</li>
 						{% if user.is_authenticated %}
 							<li class="nav-item">
 								<a class="nav-link" href="{% url 'upload' %}">upload project</a>

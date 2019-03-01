@@ -2,7 +2,13 @@
 
 {% block content %}
 <div class="container-fluid mt-3 w-75">
-	{% if request.user.is_authenticated or not project.is_hidden %}
+	{% if project %}
+		{% if project.is_hidden %}
+			<div class="alert alert-primary fade show" role="alert">
+				This is a hidden Project
+			</div>
+		{% endif %}
+
 		<h3>project details</h3>
 
 		<!--<b>Project Name:</b> {{ project.name }}<br>
@@ -34,7 +40,7 @@
 			<!-- ORIGINAL -->
 			<!--<b>File Download:</b> <a href="/{{ project.file }}" download="{{ project.file }}">Download</a><br>-->
 			<!--<b>File Download:</b> <a id="dwnld" href="/{{ project.file }}" download="{{ project.file }}">download</a><br>-->
-			<span class="item">file download&brvbar;</span> <a id="dwnld" href="/{{ project.file }}" download="{{ project.file }}">download</a><br>
+			<span class="item">file download&brvbar;</span> <a id="dwnld" href="/{{ project.file.url }}" download">download</a><br>
 			<!-- Button Version -->
 			<!--<b>File Download:</b> <a id="dwnload-btn" href="/{{ project.file }}" download="{{ project.file }}">download</a><br>-->
 			<!-- Other Button Code -->
@@ -47,7 +53,7 @@
 		<span class="item">faciliator/s&brvbar;</span>
 		<ul>
 			{% for facilitator in project.get_facilitator %}
-				<li>{{ project.instructor.first_name }} {{ project.instructor.last_name }} ({{ project.instructor.username }})</li>
+				<li>{{ facilitator.first_name }} {{ facilitator.last_name }} ({{ facilitator.username }})</li>
 			{% empty %}
 				<li>None</li>
 			{% endfor %}
@@ -60,44 +66,94 @@
 			{% endfor %}
 		</ul-->
 		<hr>
-		<!--<b>Team Members:</b>-->
-		<span class="item">team members&brvbar;</span>
-		<ul>
-			{% for team_member in project.get_team_member %}
-				<li>{{ team_member.name }}</li>
-			{% empty %}
-				<li>None</li>
-			{% endfor %}
-		</ul>
-		<!--<b>Programming Languages:</b>-->
-		<span class="item">programming languages&brvbar;</span>
-		<ul>
-			{% for language in project.get_language %}
-				<li>{{ language.name }}</li>
-			{% empty %}
-				<li>None</li>
-			{% endfor %}
-		</ul>
-		<!--<b>Frameworks:</b>-->
-		<span class="item">frameworks&brvbar;</span>
-		<ul>
-			{% for framework in project.get_framework %}
-				<li>{{ framework.name }}</li>
-			{% empty %}
-				<li>None</li>
-			{% endfor %}
-		</ul>
-		<!--<b>Keywords:</b>-->
-		<span class="item">keyword/s&brvbar;</span>
-		<ul>
-			{% for keyword in project.get_keyword %}
-				<li>{{ keyword.word }}</li>
-			{% empty %}
-				<li>None</li>
-			{% endfor %}
-		</ul>
+
+		{% if project.get_team_member %}
+			<span class="item">team members&brvbar;</span>
+			<ul>
+				{% for team_member in project.get_team_member %}
+					<li>{{ team_member.name }}</li>
+				{% empty %}
+					<li>None</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		{% if project.get_language %}
+			<span class="item">programming languages&brvbar;</span>
+			<ul>
+				{% for language in project.get_language %}
+					<li>{{ language.name }}</li>
+				{% empty %}
+					<li>None</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		{% if project.get_framework %}
+			<span class="item">frameworks&brvbar;</span>
+			<ul>
+				{% for framework in project.get_framework %}
+					<li>{{ framework.name }}</li>
+				{% empty %}
+					<li>None</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+		{% if project.get_keyword %}
+			<span class="item">keyword/s&brvbar;</span>
+			<ul>
+				{% for keyword in project.get_keyword %}
+					<li>{{ keyword.word }}</li>
+				{% empty %}
+					<li>None</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+
+		{% if not project.is_hidden %}
+			{% if request.user.is_superuser or request.user.is_staff %}
+				<form action="{% url 'hide_project' project.id %}" method="post">
+					{% csrf_token %}
+					<button class="btn btn-primary">hide project</button>
+				</form>
+			{% endif %}
+		{% endif %}
+
+		{% if project.is_hidden %}
+			{% if request.user.is_superuser or request.user.is_staff %}
+				<form action="{% url 'show_project' project.id %}" method="post">
+					{% csrf_token %}
+					<button class="btn btn-primary">unhide project</button>
+				</form>
+			{% endif %}
+		{% endif %}
+
+		{% if request.user.is_superuser or request.user.is_staff %}
+			<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">delete project</button>
+		{% endif %}
+
+		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+					All data will be lost. Are you sure you want to delete this project?
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+						<form id="delete_project" action="{% url 'delete_project' project.id %}" method="post">
+							{% csrf_token %}
+							<button class="btn btn-primary">delete</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 	{% else %}
-		<h4>You are not authorized to view this project</h4>
+		<h4 class="text-center" style="width: 300px;">No projects found with this ID</h4>
 	{% endif %}
 </div>
 {% endblock %}
