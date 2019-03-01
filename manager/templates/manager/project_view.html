@@ -1,7 +1,7 @@
 {% extends 'manager/base.html'  %}
 
 {% block content %}
-<div class="container-fluid mt-3 w-75">
+<div class="container-fluid mt-3 w-100">
 	{% if project %}
 		{% if project.is_hidden %}
 			<div class="alert alert-primary fade show" role="alert">
@@ -9,28 +9,28 @@
 			</div>
 		{% endif %}
 
-		<h3>Project Details</h3>
+		<h3>project details</h3>
 
-		<b>Project Name:</b> {{ project.name }}<br>
-		<b>Semester:</b> {{ project.semester }}<br>
-		<b>Year:</b> {{ project.year }}<br>
-		<b>Description:</b><br>
-		{{ project.description }}<br>
+		<span class="item">project name&brvbar;</span> {{ project.name }}<br>
+		<span class="item">semester&brvbar;</span> {{ project.semester }}<br>
+		<span class="item">year&brvbar;</span> {{ project.year }}<br>
+		<span class="item">description&brvbar;</span>{{ project.description }}<br>
 		{% if project.website %}
-			<b>Website Link:</b> <a href="{{ project.website }}">{{ project.website }}</a><br>
+			<span class="item">website link&brvbar;</span> <a href="{{ project.website }}">{{ project.website }}</a><br>
 		{% endif %}
 		{% if project.github %}
-			<b>GitHub Link:</b> <a href="{{ project.github }}">{{ project.github }}</a><br>
+			<span class="item">gitHub link&brvbar;</span> <a href="{{ project.github }}">{{ project.github }}</a><br>
 		{% endif %}
 		{% if project.project_management %}
-			<b>Project Management Link:</b> <a href="{{ project.project_management }}">{{ project.project_management }}</a><br>
+			<span class="item">project management link&brvbar;</span> <a href="{{ project.project_management }}">{{ project.project_management }}</a><br>
 		{% endif %}
+		<br>
 		{% if project.file %}
-			<b>File Download:</b> <a href="{{ project.file.url }}" download>Download</a><br>
+			<span class="item">file download&brvbar;</span> <a id="dwnld" href="/{{ project.file.url }}" download">download</a><br>
 		{% endif %}
 		<hr>
-		<b>Instructor:</b> {{ project.instructor.first_name }} {{ project.instructor.last_name }} ({{ project.instructor.username }})<br>
-		<b>Faciliator:</b>
+		<span class="item">instructor&brvbar;</span> {{ project.instructor.first_name }} {{ project.instructor.last_name }} {{ project.instructor.username }}<br>
+		<span class="item">faciliator/s&brvbar;</span>
 		<ul>
 			{% for facilitator in project.get_facilitator %}
 				<li>{{ facilitator.first_name }} {{ facilitator.last_name }} ({{ facilitator.username }})</li>
@@ -39,8 +39,9 @@
 			{% endfor %}
 		</ul>
 		<hr>
+
 		{% if project.get_team_member %}
-			<b>Team Members:</b>
+			<span class="item">team members&brvbar;</span>
 			<ul>
 				{% for team_member in project.get_team_member %}
 					<li>{{ team_member.name }}</li>
@@ -50,7 +51,7 @@
 			</ul>
 		{% endif %}
 		{% if project.get_language %}
-			<b>Programming Languages:</b>
+			<span class="item">programming languages&brvbar;</span>
 			<ul>
 				{% for language in project.get_language %}
 					<li>{{ language.name }}</li>
@@ -60,7 +61,7 @@
 			</ul>
 		{% endif %}
 		{% if project.get_framework %}
-			<b>Frameworks:</b>
+			<span class="item">frameworks&brvbar;</span>
 			<ul>
 				{% for framework in project.get_framework %}
 					<li>{{ framework.name }}</li>
@@ -70,7 +71,7 @@
 			</ul>
 		{% endif %}
 		{% if project.get_keyword %}
-			<b>Keywords:</b>
+			<span class="item">keyword/s&brvbar;</span>
 			<ul>
 				{% for keyword in project.get_keyword %}
 					<li>{{ keyword.word }}</li>
@@ -124,8 +125,6 @@
 				</div>
 			</div>
 		</div>
-
-
 	{% else %}
 		<h4 class="text-center" style="width: 300px;">No projects found with this ID</h4>
 	{% endif %}
