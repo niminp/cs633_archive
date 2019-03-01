@@ -26,10 +26,10 @@
 		{% endif %}
 		<br>
 		{% if project.file %}
-			<span class="item">file download&brvbar;</span> <a id="dwnld" href="/{{ project.file.url }}" download">download</a><br>
+			<span class="item">file download&brvbar;</span> <a id="dwnld" href="{{ project.file.url }}" download">download</a><br>
 		{% endif %}
 		<hr>
-		<span class="item">instructor&brvbar;</span> {{ project.instructor.first_name }} {{ project.instructor.last_name }} {{ project.instructor.username }}<br>
+		<span class="item">instructor&brvbar;</span> {{ project.instructor.first_name }} {{ project.instructor.last_name }} ({{ project.instructor.username }})<br>
 		<span class="item">faciliator/s&brvbar;</span>
 		{% if project.get_team_member %}
 			<ul>
