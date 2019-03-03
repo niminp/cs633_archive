@@ -51,19 +51,19 @@ class ProjectUpload(forms.Form):
 		'tabindex' : '6',
 	})
 
-	website = forms.CharField(label="Website Link", required=False)
+	website = forms.URLField(label="Website Link", required=False)
 	website.widget.attrs.update({
 		'class': 'form-control',
 		'tabindex' : '7',
 	})
 
-	github = forms.CharField(label="GitHub Link", required=False)
+	github = forms.URLField(label="GitHub Link", required=False)
 	github.widget.attrs.update({
 		'class': 'form-control',
 		'tabindex' : '8',
 	})
 
-	project_management = forms.CharField(label="Project Management Link", required=False)
+	project_management = forms.URLField(label="Project Management Link", required=False)
 	project_management.widget.attrs.update({
 		'class': 'form-control',
 		'tabindex' : '9',
