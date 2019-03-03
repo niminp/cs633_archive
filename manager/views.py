@@ -145,19 +145,17 @@ def search(request):
 
 @login_required
 def upload(request):
+	other_data = {
+		'framework': Framework.objects.all(),
+		'language': Language.objects.all(),
+		'team_member': TeamMember.objects.all(),
+		'keyword': Keyword.objects.all(),
+	}
 
 	if request.method == "GET":
-
-		other_data = {
-			'framework': Framework.objects.all(),
-			'language': Language.objects.all(),
-			'team_member': TeamMember.objects.all(),
-			'keyword': Keyword.objects.all(),
-		}
-
 		form = forms.ProjectUpload()
 
-		return render(request, 'manager/upload.html', {'projects': Project.objects.all(), 'project_form' : form,'other_data': other_data})
+		return render(request, 'manager/upload.html', {'project_form' : form,'other_data': other_data})
 
 	elif request.method == 'POST':
 		result = ""
@@ -221,4 +219,4 @@ def upload(request):
 		if len(form.errors) > 0:
 			errors.append("Please correct the below errors")
 
-		return render(request, 'manager/upload.html', )
+		return render(request, 'manager/upload.html', {'project_form' : form,'other_data': other_data})
